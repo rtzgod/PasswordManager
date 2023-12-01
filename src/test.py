@@ -10,14 +10,14 @@ class PasswordManager:
         self.master = master
         self.master.title("Password Manager")
 
-        self.label_service = tk.Label(master, text="Service:")
-        self.label_password = tk.Label(master, text="Password:")
+        self.label_service = tk.Label(master, text="Service:", bg='#B9B4C7')
+        self.label_password = tk.Label(master, text="Password:", bg='#B9B4C7')
 
-        self.entry_service = tk.Entry(master)
-        self.entry_password = tk.Entry(master, show="*")
+        self.entry_service = tk.Entry(master, bg='#FAF0E6')
+        self.entry_password = tk.Entry(master, show="*", bg='#FAF0E6')
 
-        self.button_add = tk.Button(master, text="Add Password", command=self.add_password)
-        self.button_show_passwords = tk.Button(master, text="Show Passwords", command=self.show_passwords)
+        self.button_add = tk.Button(master, text="Add Password", command=self.add_password, bg='#5C5470')
+        self.button_show_passwords = tk.Button(master, text="Show Passwords", command=self.show_passwords, bg='#5C5470')
 
         self.label_service.grid(row=0, column=0, sticky=tk.E)
         self.label_password.grid(row=1, column=0, sticky=tk.E)
@@ -31,27 +31,28 @@ class PasswordManager:
         password = self.entry_password.get()
 
         if service and password:
-            messagebox.showinfo("Success", f"Password for {service} added successfully!")
+            messagebox.showinfo("Success", f"Password for {service} added successfully!", bg='#352F44')
             self.saved_passwords(service, password)
             # Here you can add code to save the password to a database or another storage.
         else:
-            messagebox.showerror("Error", "Service and password are required.")
+            messagebox.showerror("Error", "Service and password are required.", bg='#352F44')
 
     def show_passwords(self):
         credentials_window = tk.Toplevel(self.master)
         credentials_window.title("Enter Credentials")
 
 
-        label_username = tk.Label(credentials_window, text="Username:")
-        label_password = tk.Label(credentials_window, text="Password:")
+        label_username = tk.Label(credentials_window, text="Username:", bg='#B9B4C7')
+        label_password = tk.Label(credentials_window, text="Password:", bg='#B9B4C7')
 
-        entry_username = tk.Entry(credentials_window)
-        entry_userpassword = tk.Entry(credentials_window, show="*")
+        entry_username = tk.Entry(credentials_window, bg='#FAF0E6')
+        entry_userpassword = tk.Entry(credentials_window, show="*", bg='#FAF0E6')
 
         button_check_credentials = tk.Button(
             credentials_window,
             text="Check Credentials",
-            command=lambda: self.check_credentials(entry_username.get(), entry_userpassword.get(), credentials_window)
+            command=lambda: self.check_credentials(entry_username.get(), entry_userpassword.get(), credentials_window),
+            bg='#5C5470'
         )
 
         label_username.grid(row=0, column=0, sticky=tk.E)
@@ -69,10 +70,10 @@ class PasswordManager:
           saved_passwords_window.title("Your passwords")
 
           for i in range(len(self.saved_password)):
-              label_username_text = tk.Label(saved_passwords_window, text="Username")
-              label_password_text = tk.Label(saved_passwords_window, text="Password")
-              label_username = tk.Label(saved_passwords_window, text=self.saved_service[i])
-              label_password = tk.Label(saved_passwords_window, text=self.saved_password[i])
+              label_username_text = tk.Label(saved_passwords_window, text="Username", bg='#B9B4C7')
+              label_password_text = tk.Label(saved_passwords_window, text="Password", bg='#B9B4C7')
+              label_username = tk.Label(saved_passwords_window, text=self.saved_service[i], bg='#B9B4C7')
+              label_password = tk.Label(saved_passwords_window, text=self.saved_password[i], bg='#B9B4C7')
               
               label_username_text.grid(row=0, column=0, sticky=tk.E, padx=10, pady=10)
               label_password_text.grid(row=0, column=1, sticky=tk.E, padx=10, pady=10)
@@ -81,17 +82,18 @@ class PasswordManager:
 
     def check_credentials(self, username, password, window):
         if self.user_correct(username, password):
-            messagebox.showinfo("Access Granted", "Showing passwords!")
+            messagebox.showinfo("Access Granted", "Showing passwords!", bg='#352F44')
             window.destroy()  # Close the credentials window
-            self.saved_window()
+            self.saved_window(bg='#352F44')
             # Add code here to retrieve and display passwords.
         else:
-            messagebox.showerror("Access Denied", "Incorrect username or password.")
+            messagebox.showerror("Access Denied", "Incorrect username or password.", bg='#352F44')
 
     def user_correct(self, username, password):
         return username == 'miewkee' and password == '123'
 
 if __name__ == "__main__":
     root = tk.Tk()
+    root['bg']='#352F44'
     app = PasswordManager(root)
     root.mainloop()
