@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-print('Miras chmo')
-print("miras gay")
-=======
 import tkinter as tk
 from tkinter import messagebox
 
@@ -35,16 +31,15 @@ class PasswordManager:
         password = self.entry_password.get()
 
         if service and password:
-            messagebox.showinfo("Success", f"Password for {service} added successfully!",)
+            messagebox.showinfo("Success", f"Password for {service} added successfully!", bg='#352F44')
             self.saved_passwords(service, password)
             # Here you can add code to save the password to a database or another storage.
         else:
-            messagebox.showerror("Error", "Service and password are required.")
+            messagebox.showerror("Error", "Service and password are required.", bg='#352F44')
 
     def show_passwords(self):
         credentials_window = tk.Toplevel(self.master)
         credentials_window.title("Enter Credentials")
-        credentials_window.configure(bg='#352F44')
 
 
         label_username = tk.Label(credentials_window, text="Username:", bg='#B9B4C7')
@@ -73,7 +68,6 @@ class PasswordManager:
     def saved_window(self):            
           saved_passwords_window = tk.Toplevel(self.master)
           saved_passwords_window.title("Your passwords")
-          saved_passwords_window.configure(bg='#352F44')
 
           for i in range(len(self.saved_password)):
               label_username_text = tk.Label(saved_passwords_window, text="Username", bg='#B9B4C7')
@@ -88,12 +82,12 @@ class PasswordManager:
 
     def check_credentials(self, username, password, window):
         if self.user_correct(username, password):
-            messagebox.showinfo("Access Granted", "Showing passwords!")
-            window.destroy() 
-            self.saved_window()
+            messagebox.showinfo("Access Granted", "Showing passwords!", bg='#352F44')
+            window.destroy()  # Close the credentials window
+            self.saved_window(bg='#352F44')
             # Add code here to retrieve and display passwords.
         else:
-            messagebox.showerror("Access Denied", "Incorrect username or password.")
+            messagebox.showerror("Access Denied", "Incorrect username or password.", bg='#352F44')
 
     def user_correct(self, username, password):
         return username == 'miewkee' and password == '123'
@@ -103,4 +97,3 @@ if __name__ == "__main__":
     root['bg']='#352F44'
     app = PasswordManager(root)
     root.mainloop()
->>>>>>> f4dc8eb778c4c00a32e750b2c8a40030a32c1438
