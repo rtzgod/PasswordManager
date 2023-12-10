@@ -1,2 +1,2 @@
 # PasswordManager
-Miras gay
+v1.0
