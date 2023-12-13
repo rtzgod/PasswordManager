@@ -4,6 +4,7 @@ import tkinter.messagebox
 import sqlite3
 import random
 import string
+import math
 
 
 def create_table():
